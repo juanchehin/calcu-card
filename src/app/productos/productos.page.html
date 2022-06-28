@@ -1,16 +1,18 @@
 <!-- List of Text Items -->
-<ion-list *ngFor="let producto of productos">
-    <ion-item>
-        <ion-label>
-            {{producto.nombre}}
-        </ion-label>
-        <ion-label>
-            {{producto.precio}}
-        </ion-label>
-        <ion-button color="success">
-            <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
-    </ion-item>
+<ion-list>
+    <div *ngFor="let producto of productos">
+        <ion-item>
+            <ion-label>
+                {{producto.nombre}}
+            </ion-label>
+            <ion-label>
+                {{producto.precio}}
+            </ion-label>
+            <ion-button color="success">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+        </ion-item>
+    </div>
 </ion-list>
 
 <!-- fab placed to the (vertical) center and end -->
