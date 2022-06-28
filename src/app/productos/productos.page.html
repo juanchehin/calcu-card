@@ -1,0 +1,21 @@
+<!-- List of Text Items -->
+<ion-list *ngFor="let producto of productos">
+    <ion-item>
+        <ion-label>
+            {{producto.nombre}}
+        </ion-label>
+        <ion-label>
+            {{producto.precio}}
+        </ion-label>
+        <ion-button color="success">
+            <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+    </ion-item>
+</ion-list>
+
+<!-- fab placed to the (vertical) center and end -->
+<ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
