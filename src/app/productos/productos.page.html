@@ -15,13 +15,15 @@
     </div>
 </ion-list>
 
-<!-- fab placed to the (vertical) center and end -->
+<!-- =============== BOTON '+' ===================== -->
 <ion-fab vertical="center" horizontal="end" slot="fixed" id="open-modal" expand="block">
     <ion-fab-button>
         <ion-icon name="add"></ion-icon>
     </ion-fab-button>
 </ion-fab>
 
+
+<!-- =============== MODAL ===================== -->
 <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>
         <ion-header>
