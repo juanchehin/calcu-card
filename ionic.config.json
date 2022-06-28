@@ -1,0 +1,7 @@
+{
+  "name": "calcu-card",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
