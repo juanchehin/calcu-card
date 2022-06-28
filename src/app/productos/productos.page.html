@@ -25,18 +25,22 @@
         <ion-header>
             <ion-toolbar>
                 <ion-buttons slot="start">
-                    <ion-button (click)="cancel()">Cancel</ion-button>
+                    <ion-button (click)="cancel()">Cancelar</ion-button>
                 </ion-buttons>
-                <ion-title>Welcome</ion-title>
+                <ion-title>Producto</ion-title>
                 <ion-buttons slot="end">
-                    <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                    <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
                 </ion-buttons>
             </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
             <ion-item>
-                <ion-label position="stacked">Enter your name</ion-label>
-                <ion-input type="text" placeholder="Your name" [(ngModel)]="name"></ion-input>
+                <ion-label position="stacked">Ingrese el producto</ion-label>
+                <ion-input type="text" placeholder="Producto..." [(ngModel)]="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Ingrese el precio</ion-label>
+                <ion-input type="text" placeholder="Precio..." [(ngModel)]="precio"></ion-input>
             </ion-item>
         </ion-content>
     </ng-template>

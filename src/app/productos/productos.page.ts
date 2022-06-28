@@ -16,6 +16,8 @@ export class ProductosPage implements OnInit {
   ]
 
   name: string;
+  precio: string;
+
   message: string;
 
   constructor() { }
@@ -32,6 +34,7 @@ export class ProductosPage implements OnInit {
   }
 
   confirm() {
+    this.productos.push({ nombre: this.name,precio : this.precio});
     this.modal.dismiss(this.name, 'confirm');
   }
 
