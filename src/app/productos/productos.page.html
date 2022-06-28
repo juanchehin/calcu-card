@@ -36,10 +36,10 @@
 
 <ion-item>
     <ion-label>Total compra</ion-label>
-    <ion-input></ion-input>
+    <ion-input>{{total}}</ion-input>
 </ion-item>
 
-<ion-button expand="block">Calcular</ion-button>
+<ion-button expand="block" click="calcular()" *ngIf="habilitarCalcular">Calcular</ion-button>
 
 <!-- =============== BOTON FLOTANTE '+' ===================== -->
 <ion-fab vertical="center" horizontal="end" slot="fixed" id="open-modal" expand="block">
