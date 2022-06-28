@@ -10,10 +10,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class ProductosPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
 
-  productos = [
-    { nombre: 'balon', precio: '19600' },
-    { nombre: 'medias', precio: '11000' }
-  ]
+  productos = []
 
   name: string;
   precio: string;

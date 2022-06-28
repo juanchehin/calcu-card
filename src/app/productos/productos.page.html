@@ -6,16 +6,42 @@
                 {{producto.nombre}}
             </ion-label>
             <ion-label>
-                {{producto.precio}}
+                $ {{producto.precio}}
             </ion-label>
             <ion-button color="success">
                 <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="warning">
+                <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
         </ion-item>
     </div>
 </ion-list>
 
-<!-- =============== BOTON '+' ===================== -->
+<ion-list>
+    <ion-item>
+        <ion-select placeholder="Cantidad de cuotas">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6">6</ion-select-option>
+            <ion-select-option value="7">7</ion-select-option>
+            <ion-select-option value="8">8</ion-select-option>
+            <ion-select-option value="9">9</ion-select-option>
+        </ion-select>
+    </ion-item>
+</ion-list>
+
+<ion-item>
+    <ion-label>Total compra</ion-label>
+    <ion-input></ion-input>
+</ion-item>
+
+<ion-button expand="block">Calcular</ion-button>
+
+<!-- =============== BOTON FLOTANTE '+' ===================== -->
 <ion-fab vertical="center" horizontal="end" slot="fixed" id="open-modal" expand="block">
     <ion-fab-button>
         <ion-icon name="add"></ion-icon>
