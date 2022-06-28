@@ -59,7 +59,7 @@ export class ProductosPage implements OnInit {
 
 
   calcular(precio: number) {
-    this.total += precio;
+    this.total = this.total + precio;
   }
 
   onWillDismiss(event: Event) {
@@ -75,5 +75,20 @@ export class ProductosPage implements OnInit {
    return ((value != null) &&
            (value !== '') &&
            !isNaN(Number(value.toString())));
+  }
+
+  eliminarProducto(producto: string) {
+    console.log("producto parametro es : ",producto);
+    console.log("productos es : ",this.productos);
+
+    // this.productos = this.productos.filter(nombre => nombre != producto);
+
+    this.productos.forEach((element,index)=>{
+      // console.log("element es : " + element.nombre);
+      if(element.nombre == producto) {
+        // console.log("index es : " + index);
+        delete this.productos[index];
+      }
+   });
   }
 }
