@@ -54,12 +54,12 @@ export class ProductosPage implements OnInit {
 
     this.productos.push({ nombre: this.name,precio : this.precio});
     this.modal.dismiss(this.name, 'confirm');
-    this.calcular(this.precio);
+    this.calcular();
   }
 
 
-  calcular(precio: number) {
-    this.total = this.total + precio;
+  calcular() {
+    this.total = Number.parseInt(this.total.toString()) + Number.parseFloat(this.precio.toString());
   }
 
   onWillDismiss(event: Event) {
