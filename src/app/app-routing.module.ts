@@ -3,16 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'productos',
+    path: '',
     redirectTo: 'productos',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },  {
     path: 'productos',
     loadChildren: () => import('./productos/productos.module').then( m => m.ProductosPageModule)
+  },
+  {
+    path: 'acerca-de',
+    loadChildren: () => import('./acerca-de/acerca-de.module').then( m => m.AcercaDePageModule)
   }
 
 ];

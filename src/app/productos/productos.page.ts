@@ -19,7 +19,7 @@ export class ProductosPage implements OnInit {
   name: string;
   precio: number;
   total = 0;
-  tasa: number;
+  tasa = 0;
   totalConTasa = 0;
 
   message: string;
@@ -43,6 +43,7 @@ export class ProductosPage implements OnInit {
   }
 
   cancel() {
+    console.log("pasa cancelar")
     this.modal.dismiss(null, 'cancel');
   }
 
@@ -56,22 +57,28 @@ export class ProductosPage implements OnInit {
 
     this.productos.push({ nombre: this.name,precio : this.precio});
     this.modal.dismiss(this.name, 'confirm');
+
     this.habilitarCalcular = true;
     this.total = Number.parseInt(this.total.toString()) + Number.parseFloat(this.precio.toString());
+
     this.name = null;
     this.precio = null;
   }
 
 
   calcular() {
-
     this.tasa = this.tasa / 100;
-
-
     this.totalConTasa = this.total + (this.total * this.tasa);
+
   }
 
   onWillDismiss(event: Event) {
+    if(!this.isNumberic(this.tasa))
+    {
+      this.presentAlert('La tasa debe ser numerica')
+      return;
+    }
+
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
       this.message = `Hello, ${ev.detail.data}!`;
