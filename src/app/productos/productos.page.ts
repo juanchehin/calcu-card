@@ -55,6 +55,8 @@ export class ProductosPage implements OnInit {
     this.productos.push({ nombre: this.name,precio : this.precio});
     this.modal.dismiss(this.name, 'confirm');
     this.calcular();
+    this.name = null;
+    this.precio = null;
   }
 
 
