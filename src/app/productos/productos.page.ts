@@ -19,6 +19,8 @@ export class ProductosPage implements OnInit {
   name: string;
   precio: number;
   total = 0;
+  tasa: number;
+  totalConTasa = 0;
 
   message: string;
 
@@ -54,14 +56,19 @@ export class ProductosPage implements OnInit {
 
     this.productos.push({ nombre: this.name,precio : this.precio});
     this.modal.dismiss(this.name, 'confirm');
-    this.calcular();
+    this.habilitarCalcular = true;
+    this.total = Number.parseInt(this.total.toString()) + Number.parseFloat(this.precio.toString());
     this.name = null;
     this.precio = null;
   }
 
 
   calcular() {
-    this.total = Number.parseInt(this.total.toString()) + Number.parseFloat(this.precio.toString());
+
+    this.tasa = this.tasa / 100;
+
+
+    this.totalConTasa = this.total + (this.total * this.tasa);
   }
 
   onWillDismiss(event: Event) {
@@ -86,6 +93,12 @@ export class ProductosPage implements OnInit {
     if (index !== -1) {
         this.productos.splice(index, 1);
     }
+
+  }
+
+  confirm2() {
+
+    this.modal.dismiss(this.name, 'confirm');
 
   }
 }

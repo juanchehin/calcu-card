@@ -34,12 +34,16 @@
     </ion-item>
 </ion-list>
 
-<ion-item>
-    <ion-label>Total compra : </ion-label>
-    <ion-input> {{total}} </ion-input>
-</ion-item>
 
-<ion-button expand="block" click="calcular()" *ngIf="habilitarCalcular">Calcular</ion-button>
+<ion-label position="stacked">Tasa de interes : % </ion-label>
+<ion-input type="text" placeholder="Tasa interes..." [(ngModel)]="tasa"></ion-input>
+
+
+<ion-label>Total compra : </ion-label>
+<ion-input> {{total}} </ion-input>
+
+
+<ion-button expand="block" (click)="calcular()" [disabled]="!habilitarCalcular" id="open-modal-2">Calcular</ion-button>
 
 <!-- =============== BOTON FLOTANTE '+' ===================== -->
 <ion-fab vertical="center" horizontal="end" slot="fixed" id="open-modal" expand="block">
@@ -71,6 +75,31 @@
             <ion-item>
                 <ion-label position="stacked">Ingrese el precio</ion-label>
                 <ion-input type="text" placeholder="Precio..." [(ngModel)]="precio"></ion-input>
+            </ion-item>
+        </ion-content>
+    </ng-template>
+</ion-modal>
+
+<!-- =============== MODAL 2 ===================== -->
+<ion-modal trigger="open-modal-2" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button (click)="cancel()">Cancelar</ion-button>
+                </ion-buttons>
+                <ion-title>Calculo</ion-title>
+                <ion-buttons slot="end">
+                    <ion-button (click)="confirm2()" [strong]="true">Confirmar</ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-item>
+                <ion-label position="stacked">Valor compra : {{ total }}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">Valor con interes : {{totalConTasa}}</ion-label>
             </ion-item>
         </ion-content>
     </ng-template>
