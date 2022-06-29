@@ -48,7 +48,7 @@ export class ProductosPage implements OnInit {
     // Chequear que el precio sea numerico
     if(!this.isNumberic(this.precio))
     {
-      this.presentAlert('El precio debe ser numerico')
+      this.presentAlert('El precio debe ser numerico y no debe estar vacio')
       return;
     }
 
@@ -78,17 +78,12 @@ export class ProductosPage implements OnInit {
   }
 
   eliminarProducto(producto: string) {
-    console.log("producto parametro es : ",producto);
-    console.log("productos es : ",this.productos);
 
-    // this.productos = this.productos.filter(nombre => nombre != producto);
+    const index: number = this.productos.map(producto => producto.nombre).indexOf(producto)
 
-    this.productos.forEach((element,index)=>{
-      // console.log("element es : " + element.nombre);
-      if(element.nombre == producto) {
-        // console.log("index es : " + index);
-        delete this.productos[index];
-      }
-   });
+    if (index !== -1) {
+        this.productos.splice(index, 1);
+    }
+
   }
 }
