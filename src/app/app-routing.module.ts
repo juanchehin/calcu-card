@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'productos',
+    redirectTo: 'config-inicial',
     pathMatch: 'full'
   },
   {
@@ -18,7 +18,12 @@ const routes: Routes = [
   {
     path: 'configuraciones',
     loadChildren: () => import('./configuraciones/configuraciones.module').then( m => m.ConfiguracionesPageModule)
+  },
+  {
+    path: 'config-inicial',
+    loadChildren: () => import('./config-inicial/config-inicial.module').then( m => m.ConfigInicialPageModule)
   }
+
 ];
 
 @NgModule({
