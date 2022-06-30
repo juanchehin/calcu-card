@@ -53,7 +53,7 @@
         <ion-input> {{total}} </ion-input>
     </ion-label>
 
-    <ion-button expand="block" (click)="calcular()" [disabled]="!habilitarCalcular" id="open-modal-2">Calcular</ion-button>
+    <ion-button expand="block" (click)="calcular()" [disabled]="!habilitarCalcular">Calcular</ion-button>
 
     <!-- =============== BOTON FLOTANTE '+' ===================== -->
     <ion-fab vertical="center" horizontal="end" slot="fixed" id="open-modal" expand="block">
@@ -89,28 +89,4 @@
         </ng-template>
     </ion-modal>
 
-    <!-- =============== MODAL 2 ===================== -->
-    <ion-modal trigger="open-modal-2" (willDismiss)="onWillDismiss($event)">
-        <ng-template>
-            <ion-header>
-                <ion-toolbar>
-                    <ion-buttons slot="start">
-                        <ion-button (click)="cancel()">Cancelar</ion-button>
-                    </ion-buttons>
-                    <ion-title>Calculo</ion-title>
-                    <ion-buttons slot="end">
-                        <ion-button (click)="confirm2()" [strong]="true">Confirmar</ion-button>
-                    </ion-buttons>
-                </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-                <ion-item>
-                    <ion-label position="stacked">Valor compra : {{ total }}</ion-label>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="stacked">Valor con interes : {{totalConTasa}}</ion-label>
-                </ion-item>
-            </ion-content>
-        </ng-template>
-    </ion-modal>
 </ion-content>

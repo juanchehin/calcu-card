@@ -6,22 +6,18 @@ import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-productos',
-  templateUrl: './productos.page.html',
-  styleUrls: [],
+  templateUrl: './productos.page.html'
 })
 export class ProductosPage implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
 
   productos = []
-
   habilitarCalcular = false;
-
   name: string;
   precio: number;
   total = 0;
   tasa = 0;
   totalConTasa = 0;
-
   message: string;
 
   constructor(public alertController: AlertController) { }
@@ -29,29 +25,26 @@ export class ProductosPage implements OnInit {
   ngOnInit() {
   }
 
-  async presentAlert(mensaje: string) {
+  async presentAlert(pMensaje: string,pHeader: string,pSubHeader: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Alerta',
-      subHeader: 'Mensaje',
-      message: mensaje,
+      header: pHeader,
+      subHeader: pSubHeader,
+      message: pMensaje,
       buttons: ['OK']
     });
 
     await alert.present();
 
   }
-
   cancel() {
-    console.log("pasa cancelar, this.modal : ",this.modal);
-
     this.modal.dismiss(null, 'cancel');
   }
 
   confirm() {
     if(!this.isNumberic(this.precio))
     {
-      this.presentAlert('El precio debe ser numerico y no debe estar vacio')
+      this.presentAlert('El precio debe ser numerico y no debe estar vacio','Alerta','')
       return;
     }
 
@@ -69,18 +62,24 @@ export class ProductosPage implements OnInit {
   calcular() {
     if(this.tasa > 100)
     {
-      this.presentAlert('La tasa de interes debe ser menor a 100')
+      this.presentAlert('La tasa de interes debe ser menor a 100','Alerta','')
       return;
     }
     this.tasa = this.tasa / 100;
     this.totalConTasa = this.total + (this.total * this.tasa);
+
+    var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
+                  <br>
+                  <h3>Valor con el aumento de tasa : </h3> <h2>${this.totalConTasa}</h2>`;
+
+    this.presentAlert(mensj,'Calculo','')
 
   }
 
   onWillDismiss(event: Event) {
     if(!this.isNumberic(this.tasa))
     {
-      this.presentAlert('La tasa debe ser numerica')
+      this.presentAlert('La tasa debe ser numerica','Alerta','')
       return;
     }
 
