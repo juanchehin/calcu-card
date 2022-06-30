@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'acerca-de',
     loadChildren: () => import('./acerca-de/acerca-de.module').then( m => m.AcercaDePageModule)
+  },  {
+    path: 'configuraciones',
+    loadChildren: () => import('./configuraciones/configuraciones.module').then( m => m.ConfiguracionesPageModule)
   }
+
 
 ];
 

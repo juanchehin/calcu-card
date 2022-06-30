@@ -43,12 +43,12 @@ export class ProductosPage implements OnInit {
   }
 
   cancel() {
-    console.log("pasa cancelar")
+    console.log("pasa cancelar, this.modal : ",this.modal);
+
     this.modal.dismiss(null, 'cancel');
   }
 
   confirm() {
-    // Chequear que el precio sea numerico
     if(!this.isNumberic(this.precio))
     {
       this.presentAlert('El precio debe ser numerico y no debe estar vacio')
@@ -67,6 +67,11 @@ export class ProductosPage implements OnInit {
 
 
   calcular() {
+    if(this.tasa > 100)
+    {
+      this.presentAlert('La tasa de interes debe ser menor a 100')
+      return;
+    }
     this.tasa = this.tasa / 100;
     this.totalConTasa = this.total + (this.total * this.tasa);
 
