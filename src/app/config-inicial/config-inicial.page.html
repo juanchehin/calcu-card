@@ -12,7 +12,7 @@
     <ion-content>
         Bienvenido a "Calcu-Card" Para empezar, ingrese la cantidad de cuotas que se cobrará sin interes :
 
-        <ion-list>
+        <ion-list (ionChange)="seCambio($event)">
             <ion-item>
                 <ion-select [(ngModel)]="cuotas" placeholder="Cantidad de cuotas" (click)="chequear()">
                     <ion-select-option value="1">1</ion-select-option>

@@ -61,4 +61,8 @@ export class ConfigInicialPage implements OnInit {
 
   }
 
+  seCambio(event: any) {
+    this.chequear();
+  }
+
 }

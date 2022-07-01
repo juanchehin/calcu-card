@@ -30,6 +30,8 @@ export class ProductosPage implements OnInit {
 
   }
 
+
+
   async presentAlert(pMensaje: string,pHeader: string,pSubHeader: string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -78,11 +80,6 @@ export class ProductosPage implements OnInit {
       return;
     }
 
-      // Pregunto para calcular si es con o sin interes
-
-      console.log("cantCuotas : ",this.cantCuotas)
-      console.log("cantCuotasStorage : ",this.cantCuotasStorage)
-
       if(this.cantCuotas > this.cantCuotasStorage )
       {
         this.tasa = this.tasa / 100;
@@ -103,8 +100,6 @@ export class ProductosPage implements OnInit {
       this.presentAlert(mensj,'Calculo','')
    }
 
-
-
   isNumberic(value: string | number): boolean
   {
    return ((value != null) &&
@@ -123,9 +118,7 @@ export class ProductosPage implements OnInit {
   }
 
   confirm2() {
-
     this.modal.dismiss(this.name, 'confirm');
-
   }
 
 
