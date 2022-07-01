@@ -14,7 +14,7 @@
 
         <ion-list>
             <ion-item>
-                <ion-select placeholder="Cantidad de cuotas">
+                <ion-select [(ngModel)]="cuotas" placeholder="Cantidad de cuotas" (click)="chequear()">
                     <ion-select-option value="1">1</ion-select-option>
                     <ion-select-option value="2">2</ion-select-option>
                     <ion-select-option value="3">3</ion-select-option>
@@ -27,10 +27,11 @@
                 </ion-select>
             </ion-item>
         </ion-list>
+
+        <!-- <ion-button (click)="presentAlert()">Seleccionar...</ion-button> -->
     </ion-content>
 
-    <br>
-    <ion-button size="large">
+    <ion-button size="large" (click)="continuar()" [disabled]="!habilitarContinuar">
         Continuar
         <ion-icon name="arrow-forward-circle-outline"></ion-icon>
     </ion-button>

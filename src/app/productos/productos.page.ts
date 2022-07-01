@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { AlertController } from '@ionic/angular';
-
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-productos',
@@ -19,10 +19,15 @@ export class ProductosPage implements OnInit {
   tasa = 0;
   totalConTasa = 0;
   message: string;
+  cantCuotas: string;
+  cantCuotasStorage: string;
 
   constructor(public alertController: AlertController) { }
 
   ngOnInit() {
+
+    this.dameCuotasStorage();
+
   }
 
   async presentAlert(pMensaje: string,pHeader: string,pSubHeader: string) {
@@ -39,6 +44,13 @@ export class ProductosPage implements OnInit {
   }
   cancel() {
     this.modal.dismiss(null, 'cancel');
+  }
+
+
+  async dameCuotasStorage()
+  {
+    const { value } = await Storage.get({ key: 'num-cuotas' });
+    this.cantCuotasStorage = value;
   }
 
   confirm() {
@@ -65,29 +77,32 @@ export class ProductosPage implements OnInit {
       this.presentAlert('La tasa de interes debe ser menor a 100','Alerta','')
       return;
     }
-    this.tasa = this.tasa / 100;
-    this.totalConTasa = this.total + (this.total * this.tasa);
 
-    var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
-                  <br>
-                  <h3>Valor con el aumento de tasa : </h3> <h2>${this.totalConTasa}</h2>`;
+      // Pregunto para calcular si es con o sin interes
 
-    this.presentAlert(mensj,'Calculo','')
+      console.log("cantCuotas : ",this.cantCuotas)
+      console.log("cantCuotasStorage : ",this.cantCuotasStorage)
 
-  }
+      if(this.cantCuotas > this.cantCuotasStorage )
+      {
+        this.tasa = this.tasa / 100;
+        this.totalConTasa = this.total + (this.total * this.tasa);
 
-  onWillDismiss(event: Event) {
-    if(!this.isNumberic(this.tasa))
-    {
-      this.presentAlert('La tasa debe ser numerica','Alerta','')
-      return;
-    }
+        var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
+                      <br>
+                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.totalConTasa}</h2>`;
 
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
-    }
-  }
+      }
+      else
+      {
+        var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
+                      <br>
+                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.total}</h2>`;
+
+      }
+      this.presentAlert(mensj,'Calculo','')
+   }
+
 
 
   isNumberic(value: string | number): boolean
@@ -111,5 +126,19 @@ export class ProductosPage implements OnInit {
 
     this.modal.dismiss(this.name, 'confirm');
 
+  }
+
+
+  onWillDismiss(event: Event) {
+    if(!this.isNumberic(this.tasa))
+    {
+      this.presentAlert('La tasa debe ser numerica','Alerta','')
+      return;
+    }
+
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.message = `Hello, ${ev.detail.data}!`;
+    }
   }
 }
