@@ -19,8 +19,9 @@ export class ProductosPage implements OnInit {
   tasa = 0;
   totalConTasa = 0;
   message: string;
-  cantCuotas: string;
-  cantCuotasStorage: string;
+  cantCuotas: number;
+  cantCuotasStorage: number;
+  divCuotas: number;
 
   constructor(public alertController: AlertController) { }
 
@@ -52,7 +53,7 @@ export class ProductosPage implements OnInit {
   async dameCuotasStorage()
   {
     const { value } = await Storage.get({ key: 'num-cuotas' });
-    this.cantCuotasStorage = value;
+    this.cantCuotasStorage = Number(value);
   }
 
   confirm() {
@@ -84,17 +85,24 @@ export class ProductosPage implements OnInit {
       {
         this.tasa = this.tasa / 100;
         this.totalConTasa = this.total + (this.total * this.tasa);
+        this.divCuotas = this.totalConTasa / this.cantCuotas;
 
         var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
                       <br>
-                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.totalConTasa}</h2>`;
+                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.totalConTasa}</h2>
+                      <br>
+                      <h3>Valor por cuota : </h3> <h2>${this.divCuotas}</h2>`;
 
       }
       else
       {
+        this.divCuotas = this.total / this.cantCuotas;
+
         var mensj = `<h3>Valor de la compra : </h3> <h2>${this.total}</h2>
                       <br>
-                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.total}</h2>`;
+                      <h3>Valor con el aumento de tasa : </h3> <h2>${this.total}</h2>
+                      <br>
+                      <h3>Valor por cuota : </h3> <h2>${this.divCuotas}</h2>`;
 
       }
       this.presentAlert(mensj,'Calculo','')
