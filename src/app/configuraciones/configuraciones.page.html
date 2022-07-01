@@ -9,9 +9,9 @@
 
 <ion-content>
     <ion-label position="stacked">Ingrese hasta que valor seran cuotas sin interes : </ion-label>
-    <ion-list>
+    <ion-list (ionChange)="modificarCantCuotas($event)">
         <ion-item>
-            <ion-select placeholder="Cantidad de cuotas">
+            <ion-select placeholder="Cantidad de cuotas" [(ngModel)]="cantCuotasStorage">
                 <ion-select-option value="1">1</ion-select-option>
                 <ion-select-option value="2">2</ion-select-option>
                 <ion-select-option value="3">3</ion-select-option>
